@@ -5,12 +5,16 @@
       "PackagePath": "staticwebassets\\WebShop.bundle.scp.css"
     },
     {
-      "Id": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
     },
     {
       "Id": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\images\\computer-definition.png",
+      "PackagePath": "staticwebassets\\images\\computer-definition.png"
     },
     {
       "Id": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\js\\site.js",

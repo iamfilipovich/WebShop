@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Eb5dkw47K7QmrQIBtdbHdpnht4Zmp8pOfZgj23MBEXU=",
+  "Hash": "5jO4XJlY9Cn3HsyAHva0huACHgKAyOQU2sj+dws9XVs=",
   "Source": "WebShop",
   "BasePath": "_content/WebShop",
   "Mode": "Default",
@@ -1071,12 +1071,12 @@
       "OriginalItemSpec": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WebShop.bundle.scp.css"
     },
     {
-      "Identity": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\css\\site.css",
+      "Identity": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\css\\bootstrap.min.css",
       "SourceId": "WebShop",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\",
       "BasePath": "_content/WebShop",
-      "RelativePath": "css/site.css",
+      "RelativePath": "css/bootstrap.min.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1085,7 +1085,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\site.css"
+      "OriginalItemSpec": "wwwroot\\css\\bootstrap.min.css"
     },
     {
       "Identity": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\favicon.ico",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\images\\computer-definition.png",
+      "SourceId": "WebShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\",
+      "BasePath": "_content/WebShop",
+      "RelativePath": "images/computer-definition.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\computer-definition.png"
     },
     {
       "Identity": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\wwwroot\\js\\site.js",

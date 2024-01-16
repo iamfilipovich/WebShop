@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebShop.Areas.Identity.Data;
 using WebShop.Models;
+using WebShop.Models.DTOs;
 
 namespace WebShop.Controllers
 {
@@ -11,21 +12,40 @@ namespace WebShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<Areas.Identity.Data.ApplicationUser> _userManager;
+        private readonly IHomeRepository _homeRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<Areas.Identity.Data.ApplicationUser> userManager)
+        public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository, UserManager<Areas.Identity.Data.ApplicationUser> userManager)
         {
+            _homeRepository = homeRepository;
             _logger = logger;
-            this._userManager = userManager;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string sterm = "", int CategoryID = 0)
         {
-            return View();
+            IEnumerable<Products> products = await _homeRepository.GetProducts(sterm, CategoryID);
+            IEnumerable<Category> categories = await _homeRepository.Categories();
+            ProductDisplayModel productModel = new()
+            {
+                Products = products,
+                Categories = categories,
+                STerm = sterm,
+                categoryID = CategoryID
+            };
+
+            return View(productModel);
         }
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin, Member")]
+        public IActionResult Create()
+        {
+
             return View();
         }
 
