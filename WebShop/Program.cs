@@ -4,8 +4,9 @@ var connectionString = builder.Configuration.GetConnectionString("WebShopDbConte
 
 builder.Services.AddDbContext<WebShopDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddRoles<IdentityRole>()        
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddDefaultUI()     
+    .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<WebShopDbContext>();
 
 // Add services to the container.
@@ -23,6 +24,11 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    await DbSeeder.SeedDefaultData(scope.ServiceProvider);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -39,41 +45,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-using(var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-    var roles = new[] { "Admin", "Member" };
-
-    foreach (var role in roles)
-    {
-        if(!await roleManager.RoleExistsAsync(role))
-            await roleManager.CreateAsync(new IdentityRole(role));
-    }
-}
-
-using (var scope = app.Services.CreateScope())
-{
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-    string email = "admin@admin.com";
-    string password = "admin123";
-    string firstName = "Admin";
-
-    if (await userManager.FindByEmailAsync(email) == null)
-    {
-        var user = new ApplicationUser
-        {
-            Email = email,
-            FirstName = firstName,
-            LastName = firstName,
-            UserName = email,
-            
-        };
-
-        await userManager.CreateAsync(user, password);
-        await userManager.AddToRoleAsync(user, "Admin");
-    }
-}
-
-    app.Run();
+app.Run();

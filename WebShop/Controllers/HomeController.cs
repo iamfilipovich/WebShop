@@ -8,7 +8,6 @@ using WebShop.Models.DTOs;
 
 namespace WebShop.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

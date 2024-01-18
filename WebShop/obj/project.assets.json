@@ -11622,24 +11622,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\iamfilipovich\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\iamfi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\WebShop.csproj",
+      "projectUniqueName": "C:\\Users\\iamfi\\source\\repos\\WebShop\\WebShop\\WebShop.csproj",
       "projectName": "WebShop",
-      "projectPath": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\WebShop.csproj",
-      "packagesPath": "C:\\Users\\iamfilipovich\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\iamfilipovich\\source\\repos\\WebShop\\WebShop\\obj\\",
+      "projectPath": "C:\\Users\\iamfi\\source\\repos\\WebShop\\WebShop\\WebShop.csproj",
+      "packagesPath": "C:\\Users\\iamfi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\iamfi\\source\\repos\\WebShop\\WebShop\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\iamfilipovich\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\iamfi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11647,8 +11642,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11719,7 +11712,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

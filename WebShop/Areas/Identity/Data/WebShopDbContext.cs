@@ -27,6 +27,6 @@ public class WebShopDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Order> Orders { get; set; } = default!;
     public DbSet<OrderDetail> OrderDetails { get; set; } = default!;
     public DbSet<OrderStatus> OrderStatuses { get; set; } = default!;
-    public DbSet<ShoppingCart> ShoppingCarts { get; set; } = default!;
+    public DbSet<ShoppingCart> ShoppingCart { get; set; } = default!;
 
 }

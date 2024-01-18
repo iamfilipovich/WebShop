@@ -1,4 +1,5 @@
-﻿using WebShop.Models;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using WebShop.Models;
 
 namespace WebShop.Repositories
 {
@@ -14,13 +15,13 @@ namespace WebShop.Repositories
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<bool> AddItem(int productId, int qty)
+        public async Task<int> AddItem(int productId, int qty)
         {
+            string userId = GetUserId();
             using var transaction = _db.Database.BeginTransaction();
             try { 
-                string userId = GetUserId();
-                if(userId == null)
-                    return false;
+                if(string.IsNullOrEmpty(userId))
+                    throw new Exception("User is not logged.");
 
                 var cart = await GetCart(userId);
                 if(cart == null)
@@ -29,7 +30,7 @@ namespace WebShop.Repositories
                     {
                         UserId = userId,
                     };
-                    _db.ShoppingCarts.Add(cart);
+                    _db.ShoppingCart.Add(cart);
                 }
                 _db.SaveChanges();
                 
@@ -40,6 +41,7 @@ namespace WebShop.Repositories
                 }
                 else
                 {
+                    var product = _db.Products.Find(productId);
                     cartItem = new CartDetail 
                     { 
                         ProductId = productId,
@@ -49,31 +51,31 @@ namespace WebShop.Repositories
                     _db.CartDetails.Add(cartItem);
                 }
                 _db.SaveChanges();
-                transaction.Commit();
-                return true;
+                transaction.Commit();   
             }
             catch (Exception ex)
             {
-                return false;
             }
+            var cartItemCount = await GetCartItemCount(userId);
+            return cartItemCount;   
         }
-        public async Task<bool> RemoveItem(int productId, int qty)
+        public async Task<int> RemoveItem(int productId)
         {
+            string userId = GetUserId();
             try
             {
-                string userId = GetUserId();
-                if (userId == null)
-                    return false;
+                if (string.IsNullOrEmpty(userId))
+                    throw new Exception("User is not logged.");
 
                 var cart = await GetCart(userId);
                 if (cart == null)
                 {
-                    return false;
+                    throw new Exception("Cart is empty.");
                 }
                 //remove items
                 var cartItem = _db.CartDetails.FirstOrDefault(c => c.ProductId == productId && c.ShoppingCartId == cart.Id);
                 if (cartItem == null)
-                    return false;
+                    throw new Exception("No items in cart.");
                 else if(cartItem.Quantity == 1)
                 {
                     _db.CartDetails.Remove(cartItem);
@@ -82,16 +84,16 @@ namespace WebShop.Repositories
                     cartItem.Quantity--;
                 }
                 _db.SaveChanges();
-                return true;
             }
             catch (Exception ex)
             {
-                return false;
             }
+            var cartItemCount = await GetCartItemCount(userId);
+            return cartItemCount;
         }
         public async Task<ShoppingCart> GetCart(string userId)
         {
-            var cart = await _db.ShoppingCarts.FirstOrDefaultAsync(x => x.UserId == userId);
+            var cart = await _db.ShoppingCart.FirstOrDefaultAsync(x => x.UserId == userId);
             return cart;
         }
         public async Task<ShoppingCart> GetUserCart()
@@ -99,13 +101,26 @@ namespace WebShop.Repositories
             var userId = GetUserId();
             if (userId == null)
                 throw new Exception("Invalid user id");
-            var shoppingCart = await _db.ShoppingCarts.Include(a => a.CartDetails)
+            var shoppingCart = await _db.ShoppingCart.Include(a => a.CartDetails)
                                                 .ThenInclude(a => a.Product)
                                                 .ThenInclude(a => a.Category)
                                                 .Where(a => a.UserId == userId).FirstOrDefaultAsync();
             return shoppingCart;
         }
-        public string GetUserId()
+        public async Task<int> GetCartItemCount(string userId = "")
+        {
+            if (!string.IsNullOrEmpty(userId))
+            {
+                userId = GetUserId();
+            }
+
+            var data = await (from cart in _db.ShoppingCart 
+                              join cartDetail in _db.CartDetails on 
+                              cart.Id equals cartDetail.ShoppingCartId
+                              select new { cartDetail.Id }).ToListAsync();
+            return data.Count;
+        }
+        private string GetUserId()
         {
             var principal = _httpContextAccessor.HttpContext.User;
             var userId = _userManager.GetUserId(principal);
