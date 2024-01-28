@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using WebShop.Models;
-
+﻿
 namespace WebShop.Repositories
 {
     public class CartRepository : ICartRepository
@@ -96,6 +94,7 @@ namespace WebShop.Repositories
             var cart = await _db.ShoppingCart.FirstOrDefaultAsync(x => x.UserId == userId);
             return cart;
         }
+        //gets cart for users
         public async Task<ShoppingCart> GetUserCart()
         {
             var userId = GetUserId();
@@ -107,9 +106,10 @@ namespace WebShop.Repositories
                                                 .Where(a => a.UserId == userId).FirstOrDefaultAsync();
             return shoppingCart;
         }
+        //counting the numbers of items in cart
         public async Task<int> GetCartItemCount(string userId = "")
         {
-            if (!string.IsNullOrEmpty(userId))
+            if (string.IsNullOrEmpty(userId))
             {
                 userId = GetUserId();
             }
@@ -117,7 +117,8 @@ namespace WebShop.Repositories
             var data = await (from cart in _db.ShoppingCart 
                               join cartDetail in _db.CartDetails on 
                               cart.Id equals cartDetail.ShoppingCartId
-                              select new { cartDetail.Id }).ToListAsync();
+                              where cart.UserId == userId
+                              select new { cartDetail.Id } ).ToListAsync();
             return data.Count;
         }
         private string GetUserId()

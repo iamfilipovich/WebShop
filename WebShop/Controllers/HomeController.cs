@@ -14,7 +14,7 @@ namespace WebShop.Controllers
         private readonly IHomeRepository _homeRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository, UserManager<Areas.Identity.Data.ApplicationUser> userManager)
+        public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository, UserManager<ApplicationUser> userManager)
         {
             _homeRepository = homeRepository;
             _logger = logger;

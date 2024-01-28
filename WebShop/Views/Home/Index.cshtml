@@ -5,64 +5,67 @@
 
 <div class="my-2 mt-4">
     <form asp-action="Index" class="row row-cols-lg-auto g-3 align-items-center">
-  <div class="col-12">
-    <label class="visually-hidden" for="sterm">Search WebShop</label>
-    <div class="input-group">
-      <input type="text" class="form-control" value="@Model.STerm" id="sterm" name="sterm" placeholder="Search WebShop">
-    </div>
-  </div>
+        <div class="col-12">
+            <label class="visually-hidden" for="sterm">Search WebShop</label>
+            <div class="input-group">
+                <input type="text" class="form-control" value="@Model.STerm" id="sterm" name="sterm" placeholder="Search WebShop">
+            </div>
+        </div>
 
-  <div class="col-12">
-    <label class="visually-hidden" for="CategoryID">Categories</label>
-      <select class="form-select"  id="CategoryID" name="CategoryID">
-        <option selected>All</option>
-            @foreach(var category in Model.Categories)
-            {
-                <option value="@(category.CategoryID == Model.categoryID)" value="@category.CategoryID">@category.Name</option>
-            }
-    </select>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-dark">Search</button>
-    <a href="/Home/Index" class="btn btn-dark">Reset</a>
+        <div class="col-12">
+            <label class="visually-hidden" for="CategoryID">Categories</label>
+            <select class="form-select" id="CategoryID" name="CategoryID">
+                <option selected>All</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@(category.CategoryID == Model.categoryID)" value="@category.CategoryID">@category.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-dark">Search</button>
+            <a href="/Home/Index" class="btn btn-dark">Reset</a>
 
-  </div>
-</form>
+        </div>
+    </form>
 </div>
 <div class="w-100 mt-4 d-flex flex-wrap">
-    @foreach (var product in Model.Products){
+    @foreach (var product in Model.Products)
+    {
         <div class="card mx-2 mb-4" style="width: 15rem;">
             @if (string.IsNullOrEmpty(product.Image))
             {
-                <img style="width:100%"; src="/images/computer-definition.png" class="card-img-top" alt="...">
+                <img style="width:100%" ; src="/images/computer-definition.png" class="card-img-top" alt="...">
 
-            } else
+            }
+            else
             {
-                <img style = "width:100%"; src="/images/@product.Image" class="card-img-top" alt="...">
+                <img style="width:100%" ; src="/images/@product.Image" class="card-img-top" alt="...">
             }
             <div class="card-body">
-            <h5 class="card-title">@product.Name</h5>
-            <p class="card-text">
-                <b>Kategorija:</b> @product.CategoryName<br/>
-                <b>Cijena:</b> @product.Price<br/>
-                <b>Prodavac:</b> @product.Seller
-            </p>
-            <button type="button" onclick="add(@product.ProductID)" class="btn btn-primary">Add to cart</button>
+                <h5 class="card-title">@product.Name</h5>
+                <p class="card-text">
+                    <b>Kategorija:</b> @product.CategoryName<br />
+                    <b>Cijena:</b> @product.Price<br />
+                    <b>Prodavac:</b> @product.Seller
+                </p>
+                <button type="button" onclick="add(@product.ProductID)" class="btn btn-primary">Add to cart</button>
+            </div>
         </div>
-    </div>
     }
 </div>
 
 @section Scripts {
     <script>
         async function add(productId) {
-            var usernameEl = document.getElementById("username");
+            var usernameEl = document.getElementById("userName");
             if (usernameEl == null) {
                 window.location.href = "/Identity/Account/Login";
             }
             try {
+
                 var response = await fetch(`/Cart/AddItem?productId=${productId}`);
-                if (response.status == 200) {
+                if (response.ok) {
                     var result = await response.json();
                     var cartCountEl = document.getElementById("cartCount");
                     if (cartCountEl) {
@@ -71,7 +74,7 @@
                     }
                     else {
                         console.error("Element with id 'cartCount' not found.");
-                    }  
+                    }
                 }
             } catch (err) {
                 console.log(err);

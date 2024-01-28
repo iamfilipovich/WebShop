@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using WebShop.Areas.Identity.Data;
-using WebShop.Models;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace WebShop.Data;
 
-public class WebShopDbContext : IdentityDbContext<ApplicationUser> 
+public class WebShopDbContext : IdentityDbContext<ApplicationUser>
 {
     public WebShopDbContext(DbContextOptions<WebShopDbContext> options)
         : base(options)

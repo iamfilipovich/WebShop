@@ -4,5 +4,6 @@ global using Microsoft.EntityFrameworkCore;
 global using WebShop.Areas.Identity.Data;
 global using WebShop.Data;
 global using WebShop.Models.DTOs;
+global using WebShop.Models;
 global using Microsoft.AspNetCore.Authorization;
 

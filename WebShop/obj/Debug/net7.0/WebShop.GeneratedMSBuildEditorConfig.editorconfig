@@ -9,75 +9,77 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebShop
 build_property.RootNamespace = WebShop
-build_property.ProjectDir = C:\Users\iamfi\source\repos\WebShop\WebShop\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = D:\Users\iamfilipovich\source\repos\WebShop\WebShop\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\iamfi\source\repos\WebShop\WebShop
+build_property.MSBuildProjectDirectory = D:\Users\iamfilipovich\source\repos\WebShop\WebShop
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/Account/Login.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/Account/Register.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/_AuthLayout.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/_AuthLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0F1dGhMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/_ViewImports.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Areas/Identity/Pages/_ViewStart.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Home/Create.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Cart/GetUserCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxHZXRVc2VyQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Home/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Home/Index.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Home/Privacy.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Shared/Error.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Shared/_LoginPartial.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/_ViewImports.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/_ViewStart.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/iamfi/source/repos/WebShop/WebShop/Views/Shared/_Layout.cshtml]
+[D:/Users/iamfilipovich/source/repos/WebShop/WebShop/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9r2rscykfy
