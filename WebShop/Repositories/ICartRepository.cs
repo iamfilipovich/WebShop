@@ -9,6 +9,7 @@ namespace WebShop.Repositories
         Task<ShoppingCart> GetCart(string userId);
         Task<ShoppingCart> GetUserCart();
         Task<int> GetCartItemCount(string userId = "");
+        Task<bool> DoCheckout();
 
     }
 }

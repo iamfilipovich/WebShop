@@ -37,5 +37,13 @@ namespace WebShop.Controllers
             var cartItem = await _cartRepo.GetCartItemCount();
             return Ok(cartItem);
         }
+
+        public async Task<IActionResult> Checkout()
+        {
+            bool ifCheckout = await _cartRepo.DoCheckout();
+            if (!ifCheckout)
+                throw new Exception("Problem on the server side");
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

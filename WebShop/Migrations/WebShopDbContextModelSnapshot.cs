@@ -102,12 +102,10 @@ namespace WebShop.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -144,12 +142,10 @@ namespace WebShop.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -312,13 +308,10 @@ namespace WebShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -331,7 +324,7 @@ namespace WebShop.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -390,6 +383,8 @@ namespace WebShop.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ProductID");
+
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Products");
                 });
@@ -468,7 +463,7 @@ namespace WebShop.Migrations
             modelBuilder.Entity("WebShop.Models.CartDetail", b =>
                 {
                     b.HasOne("WebShop.Models.Products", "Product")
-                        .WithMany()
+                        .WithMany("CartDetail")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -504,8 +499,8 @@ namespace WebShop.Migrations
                         .IsRequired();
 
                     b.HasOne("WebShop.Models.Products", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
+                        .WithMany("OrderDetail")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -514,8 +509,26 @@ namespace WebShop.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WebShop.Models.Products", b =>
+                {
+                    b.HasOne("WebShop.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("WebShop.Models.Order", b =>
                 {
+                    b.Navigation("OrderDetail");
+                });
+
+            modelBuilder.Entity("WebShop.Models.Products", b =>
+                {
+                    b.Navigation("CartDetail");
+
                     b.Navigation("OrderDetail");
                 });
 
