@@ -18,23 +18,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using WebShop.Areas.Identity.Data;
 
 namespace WebShop.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<Data.ApplicationUser> _signInManager;
-        private readonly UserManager<Data.ApplicationUser> _userManager;
-        private readonly IUserStore<Data.ApplicationUser> _userStore;
-        private readonly IUserEmailStore<Data.ApplicationUser> _emailStore;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserStore<ApplicationUser> _userStore;
+        private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<Data.ApplicationUser> userManager,
-            IUserStore<Data.ApplicationUser> userStore,
-            SignInManager<Data.ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            IUserStore<ApplicationUser> userStore,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -173,11 +172,11 @@ namespace WebShop.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private Data.ApplicationUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<Data.ApplicationUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
@@ -187,13 +186,13 @@ namespace WebShop.Areas.Identity.Pages.Account
             }
         }
 
-        private IUserEmailStore<Data.ApplicationUser> GetEmailStore()
+        private IUserEmailStore<ApplicationUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<Data.ApplicationUser>)_userStore;
+            return (IUserEmailStore<ApplicationUser>)_userStore;
         }
     }
 }

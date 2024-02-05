@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebShop.Areas.Identity.Data;
 using WebShop.Models;
 using WebShop.Models.DTOs;
 

@@ -1,4 +1,3 @@
-    
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("WebShopDbContextConnection") ?? throw new InvalidOperationException("Connection string 'WebShopDbContextConnection' not found.");
 
@@ -13,6 +12,7 @@ builder.Services.AddIdentity<ApplicationUser,IdentityRole>(options => options.Si
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IHomeRepository, HomeRepository>();
 builder.Services.AddTransient<ICartRepository, CartRepository>();
+builder.Services.AddTransient<IUserOrderRepository, UserOrderRepository>();
 
 builder.Services.AddRazorPages();
 

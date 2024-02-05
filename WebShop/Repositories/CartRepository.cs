@@ -1,5 +1,4 @@
-﻿
-namespace WebShop.Repositories
+﻿namespace WebShop.Repositories
 {
     public class CartRepository : ICartRepository
     {
