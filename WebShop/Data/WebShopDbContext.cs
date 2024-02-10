@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using WebShop.Areas.Identity.Data;
+using WebShop.Models;
 
 namespace WebShop.Data;
 
@@ -20,7 +23,7 @@ public class WebShopDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<Products> Products { get; set; } = default!;
     public DbSet<Category> Category { get; set; } = default!;
-    public DbSet<CartDetail> CartDetails{ get; set; } = default!;
+    public DbSet<CartDetail> CartDetails { get; set; } = default!;
     public DbSet<Order> Orders { get; set; } = default!;
     public DbSet<OrderDetail> OrderDetails { get; set; } = default!;
     public DbSet<OrderStatus> OrderStatuses { get; set; } = default!;
