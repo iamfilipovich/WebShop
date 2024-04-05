@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebShop.Models.Category>
+@{
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Kategorije</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Add" class="btn btn-dark">
+                Kreiraj novi kategoriju
+            </a>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Naziv</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="auto%">@obj.Name</td>
+                <td style="text-align: center;">
+                    <div class="btn-group " role="group">
+                        <a asp-controller="Category" asp-action="Update" asp-route-id="@obj.CategoryID"
+                           class="btn btn-dark mx-2" >Uredi</a>
+                        <a asp-controller="Category" asp-action="Delete" onclick="return window.confirm('Are you sure?')" asp-route-id="@obj.CategoryID"
+                           class="btn btn-secondary mx-2">Izbriši</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

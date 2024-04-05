@@ -1,4 +1,6 @@
-﻿namespace WebShop.Repositories
+﻿using System.Net.Http.Json;
+
+namespace WebShop.Repositories
 {
     public class CartRepository : ICartRepository
     {
@@ -6,7 +8,8 @@
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CartRepository(WebShopDbContext db, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public CartRepository(WebShopDbContext db, UserManager<ApplicationUser> userManager, 
+                              IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
             _userManager = userManager;
@@ -105,7 +108,6 @@
                                                 .Where(a => a.UserId == userId).FirstOrDefaultAsync();
             return shoppingCart;
         }
-        //counting the numbers of items in cart
         public async Task<int> GetCartItemCount(string userId = "")
         {
             if (string.IsNullOrEmpty(userId))
@@ -113,12 +115,12 @@
                 userId = GetUserId();
             }
 
-            var data = await (from cart in _db.ShoppingCart 
-                              join cartDetail in _db.CartDetails on 
+            var data = await (from cart in _db.ShoppingCart
+                              join cartDetail in _db.CartDetails on
                               cart.Id equals cartDetail.ShoppingCartId
                               where cart.UserId == userId
-                              select new { cartDetail.Id } ).ToListAsync();
-            return data.Count;
+                              select cartDetail.Quantity).SumAsync();
+            return data;
         }
 
         public async Task<bool> DoCheckout()
@@ -170,11 +172,13 @@
                 return false;
             }
         }
-        private string GetUserId()
+
+        public string GetUserId()
         {
             var principal = _httpContextAccessor.HttpContext.User;
             var userId = _userManager.GetUserId(principal);
             return userId;
         }
+
     }
 }

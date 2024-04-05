@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WebShop.Models
+﻿namespace WebShop.Models
 {
     public class Category
     {

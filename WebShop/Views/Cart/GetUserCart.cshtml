@@ -1,4 +1,6 @@
-﻿@model ShoppingCart
+﻿@using Microsoft.Extensions.Options
+
+@model ShoppingCart
 
 @{
     ViewData["Title"] = "GetUserCart";
@@ -12,17 +14,16 @@
 
         <table class="table table-striped">
             <tr>
-                <th>Product</th>
                 <th>Image</th>
+                <th>Product</th>
                 <th>Category</th>
-                <th>Price</th>
-                <th>Total price</th>
+                <th>Price (€)</th>
+                <th>Total price (€)</th>
                 <th>Qty</th>
             </tr>
             @foreach(var item in Model.CartDetails)
             {
                 <tr>
-                    <td>@item.Product.Name</td>
                     <td>
                         @if (string.IsNullOrEmpty(item.Product.Image))
                         {
@@ -30,9 +31,10 @@
                         }
                         else
                         {
-                            <img src="/images/@item.Product.Image" style="width:80px;height:100px" />
+                            <img src="/Uploads/@item.Product.Image" style="width:80px;height:100px" />
                         }
                     </td>
+                    <td>@item.Product.Name</td>
                     <td>@item.Product.Category.Name</td>
                     <td>@item.Product.Price</td>
                     <td>Subtotal(@item.Quantity): @(item.Product.Price * item.Quantity)</td>
@@ -44,14 +46,16 @@
             }
         </table>
         <div class="my-2">
-            <h5>Total: 
+            <h5>
+                Total (€):
                 @(Model.CartDetails.Select(item => item.Product.Price * item.Quantity).Sum())
             </h5>
         </div>
 
         <div class="my-2">
-            <a class="btn btn-dark" href="/Cart/Checkout">Proceed to checkout</a>
+            <a class="btn btn-dark" href="/Cart/Charge">Proceed to checkout</a>
         </div>
+        
     }
     else
     {

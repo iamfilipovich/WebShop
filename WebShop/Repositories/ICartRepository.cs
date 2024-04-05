@@ -1,5 +1,4 @@
-﻿using WebShop.Models;
-
+﻿
 namespace WebShop.Repositories
 {
     public interface ICartRepository
@@ -10,6 +9,6 @@ namespace WebShop.Repositories
         Task<ShoppingCart> GetUserCart();
         Task<int> GetCartItemCount(string userId = "");
         Task<bool> DoCheckout();
-
+        string GetUserId();
     }
 }

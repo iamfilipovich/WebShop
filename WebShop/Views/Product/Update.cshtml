@@ -1,0 +1,64 @@
+﻿@model WebShop.Models.Products
+@{
+}
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-dark">Update produkt</h2>
+        </div>
+        <input type="hidden" asp-for="ProductID" />
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="StockQuantity"></label>
+            <input asp-for="StockQuantity" class="form-control" />
+            <span asp-validation-for="StockQuantity" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label">Select Image</label>
+            <input type="file" asp-for="ImageFile" class="form-control">
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryID">Kategorija</label>
+            <select asp-for="CategoryID" asp-items="Model.CategoryList" class="form-control">
+                <option value="0">All</option>
+            </select>
+            <span asp-validation-for="CategoryID" class="text-danger"></span>
+        </div>
+
+        @if (TempData["msg"] != null)
+        {
+            <div class="form-group">
+                @if ((string)TempData["msg"] == "Success")
+                {
+                    <p class="text-success">Updated successfully</p>
+                }
+                else if ((string)TempData["msg"] == "Error")
+                {
+                    <p class="text-danger">Error on the server side</p>
+                }
+            </div>
+        }
+        <div class="form-group pt-3">
+            <button type="submit" class="btn btn-dark">Save</button>
+            <a href="/Product/Index" class="btn btn-secondary">Povratak</a>
+        </div>
+    </div>
+</form>

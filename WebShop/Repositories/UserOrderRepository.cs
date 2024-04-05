@@ -30,6 +30,25 @@ namespace WebShop.Repositories
                                    .ToListAsync();
             return orders;
         }
+        public async Task<IEnumerable<(Order order, ApplicationUser user, 
+                                       string productName, int quantity)>> GetAllOrdersWithUser()
+        {
+            var orders = await _db.Orders
+                                    .Include(a => a.OrderStatus)
+                                    .Include(a => a.OrderDetail)
+                                    .ThenInclude(od => od.Product)
+                                    .Select(order => new
+                                    {
+                                        Order = order,
+                                        User = _db.Users.FirstOrDefault(u => u.Id == order.UserId),
+                                        productName = order.OrderDetail.Select(od => od.Product.Name).FirstOrDefault(),
+                                        Quantity = order.OrderDetail.Select(od => od.Quantity).FirstOrDefault(),
+                                        Time = order.CreateDate
+                                    })
+                                    .ToListAsync();
+
+            return orders.Select(o => (o.Order, o.User, o.productName, o.Quantity));
+        }
 
         private string GetUserId()
         {

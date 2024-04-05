@@ -1,0 +1,27 @@
+﻿@model IEnumerable<(WebShop.Models.Order order, WebShop.Data.ApplicationUser user, string productName, int quantity)>
+
+<h1>All Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>User Name</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Time of purchase</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var (order, user, productName, quantity) in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@user.UserName</td>
+                <th style="font-weight: normal;">@productName</th>
+                <th style="font-weight: normal;">@quantity</th>
+                <th style="font-weight: normal;">@order.CreateDate</th>
+            </tr>
+        }
+    </tbody>
+</table>

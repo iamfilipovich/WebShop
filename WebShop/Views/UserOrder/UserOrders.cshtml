@@ -1,76 +1,70 @@
 ﻿@model IEnumerable<Order>
-@{
-}
+
+<style>
+    .order-status-column {
+        text-align: right;
+    }
+</style>
+
 <div style="width:100%" class="mt-2">
-    <a href="/Identity/Account/Manage" class="btn btn-dark my-2">Back</a>
-
-    <h4>My Orders</h4>
-    @if (Model != null && Model.Count() > 0)
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-dark"><b>My orders</b></h2>
+            </div>
+            <div class="col-6 text-end">
+                <a href="/Identity/Account/Manage" class="btn btn-dark">
+                    Back
+                </a>
+            </div>
+        </div>
+    </div>
+    @if (Model != null && Model.Any())
     {
-        <table class="table table-striped">
-            <tr>
-                <th>OrderDate</th>
-                <th>OrderStatus</th>
-            </tr>
-            @foreach (var order in Model)
-            {
+        @foreach (var groupedOrderByDate in Model.GroupBy(order => order.CreateDate.Date))
+        {
+            var orderGroup = groupedOrderByDate.First();
+            <table class="table table-striped">
                 <tr>
-                    <td>@order.CreateDate.ToString("dd.MM.yyyy")</td>
-                    <td>@order.OrderStatus.StatusName</td>
+                    <th colspan="3">OrderDate</th>
+                    <th class="order-status-column">OrderStatus</th>
                 </tr>
-                @if (order.OrderDetail != null && order.OrderDetail.Count > 0)
-                {
-                    <tr>
-                        <td>
-                            <table class="table table-striped">
-                                <tr>
-                                    <td>
-                                        Total:
-                                    </td>
-                                    <td>
-                                        @(order.OrderDetail.Select(item => item.Product.Price * item.Quantity).Sum())
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Book</th>
-                                    <th>Image</th>
-                                    <th>Genre</th>
-                                    <th>Unit Price(INR)</th>
-                                    <th>Total Price</th>
-                                </tr>
-                                @foreach (var item in order.OrderDetail)
+                <tr>
+                    <td colspan="3">@orderGroup.CreateDate.ToString("dd.MM.yyyy")</td>
+                    <td class="order-status-column">@orderGroup.OrderStatus.StatusName</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Image</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Unit price (€)</th>
+                                <th>Total Price (€)</th>
+                            </tr>
+                            @foreach (var order in groupedOrderByDate)
+                            {
+                                foreach (var item in order.OrderDetail)
                                 {
                                     <tr>
+                                        <td><img src="/Uploads/@item.Product.Image" alt="Product Image" style="width: 100px; height: 100px;"></td>
                                         <td>@item.Product.Name</td>
-                                        <td>
-                                            @if (string.IsNullOrEmpty(item.Product.Image))
-                                            {
-                                                <img src="/images/NoImage.png" style="width:80px;height:100px" />
-                                            }
-                                            else
-                                            {
-                                                <img src="/images/@item.Product.Image" style="width:80px;height:100px" />
-                                            }
-                                        </td>
                                         <td>@item.Product.Category.Name</td>
-                                        <td>@item.Product.Price X @item.Quantity</td>
-                                        <td> @(item.Product.Price * item.Quantity) </td>
+                                        <td>@item.Product.Price</td>
+                                        <td>@(item.Product.Price * item.Quantity)</td>
                                     </tr>
                                 }
-                            </table>
-                        </td>
-                    </tr>
-                }
-            }
-        </table>
+                            }
+                        </table>
+                    </td>
 
+                </tr>
+            </table>
+        }
     }
     else
     {
         <h5>No orders</h5>
     }
 </div>
-
-
-

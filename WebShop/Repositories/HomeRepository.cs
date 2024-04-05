@@ -31,9 +31,10 @@ namespace WebShop.Repositories
                                 ProductID = product.ProductID,
                                 Name = product.Name,
                                 Price = product.Price,
-                                Seller = product.Seller,
                                 CategoryID = category.CategoryID,
-                                CategoryName = category.Name
+                                CategoryName = category.Name,
+                                Image = product.Image,
+                                StockQuantity = product.StockQuantity
                             }
                             ).ToListAsync();
             if(CategoryID > 0)

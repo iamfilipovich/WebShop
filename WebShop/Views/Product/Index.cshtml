@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebShop.Models.Products>
+@{
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-dark">Produkti</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Add" class="btn btn-dark">
+                Kreiraj novi produkt
+            </a>
+        </div>
+    </div>
+</div>
+<br /><br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Slika
+            </th>
+            <th>
+                Naziv
+            </th>
+            <th>
+                Kategorija
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Cijena (€)
+            </th>
+            <th>
+                Kolicina
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/Uploads/@obj.Image" width="100" height="100">
+                </td>
+                <td width="auto%">
+                    @obj.Name
+                </td>
+                <td>@obj.CategoryName</td>
+                <td width="auto%">
+                    @obj.Description
+                </td>
+                <td width="auto%">
+                    @obj.Price
+                </td>
+                @if (obj.StockQuantity == 0)
+                {
+                    <td width="auto%" style="color : red;">
+                        <strong>@obj.StockQuantity</strong>
+                    </td>
+                }else
+                {
+                    <td width="auto%">
+                        @obj.StockQuantity
+                    </td>
+                }
+                <td style="width: 100px;">
+                    <!-- Adjust the width as needed -->
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Product" asp-action="Update" asp-route-id="@obj.ProductID"
+                           class="btn btn-dark rounded-custom">Uredi</a>
+                        <a asp-controller="Product" asp-action="Delete" onclick="return window.confirm('Are you sure you want to delete @obj.Name?')" asp-route-id="@obj.ProductID"
+                           class="btn btn-secondary">Izbriši</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+﻿.black-text {
+    color: black;
+}
+
+.white-text {
+    color: white;
+}
+
+.black-text .nav-item .nav-link {
+    color: black !important;
+}

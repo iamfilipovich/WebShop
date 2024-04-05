@@ -3,8 +3,10 @@
 
 }
 
-<div class="my-2 mt-4">
+<div class="my-2 mt-4" >
     <form asp-action="Index" class="row row-cols-lg-auto g-3 align-items-center">
+        <div id="errorMessage" class="alert alert-danger" style="display: none; position: fixed; top: 60px; right: 20px; z-index: 9999;"></div>
+
         <div class="col-12">
             <label class="visually-hidden" for="sterm">Search WebShop</label>
             <div class="input-group">
@@ -29,53 +31,77 @@
         </div>
     </form>
 </div>
-<div class="w-100 mt-4 d-flex flex-wrap">
+<div class="w-100 mt-4 d-flex flex-wrap" >
     @foreach (var product in Model.Products)
     {
-        <div class="card mx-2 mb-4" style="width: 15rem;">
-            @if (string.IsNullOrEmpty(product.Image))
-            {
-                <img style="width:100%" ; src="/images/computer-definition.png" class="card-img-top" alt="...">
-
-            }
-            else
-            {
-                <img style="width:100%" ; src="/images/@product.Image" class="card-img-top" alt="...">
-            }
-            <div class="card-body">
-                <h5 class="card-title">@product.Name</h5>
-                <p class="card-text">
-                    <b>Kategorija:</b> @product.CategoryName<br />
-                    <b>Cijena:</b> @product.Price<br />
-                    <b>Prodavac:</b> @product.Seller
-                </p>
-                <button type="button" onclick="add(@product.ProductID)" class="btn btn-primary">Add to cart</button>
+        if (@product.StockQuantity > 0)
+        {
+            <div class="card mx-2 mb-4" style="width: 15rem; ">
+                <div style="height: 200px; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(product.Image))
+                    {
+                        <img src="/Uploads/@product.Image" class="card-img-top" alt="Product Image" style="width: 100%;">
+                    }
+                    else
+                    {
+                        <img src="/images/No-Image-Placeholder.svg.png" class="card-img-top" alt="Placeholder Image" style="width: 100%;">
+                    }
+                </div>
+                <div class="card-body" >
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">
+                        <b>Kategorija:</b> @product.CategoryName<br />
+                        <b>Cijena:</b> @product.Price €<br />
+                    </p>
+                    <button type="button" onclick="add(@product.ProductID)" class="btn btn-dark">Add to cart</button>
+                </div>
             </div>
-        </div>
+        }
+        
     }
 </div>
 
 @section Scripts {
     <script>
-        async function add(productId) {
+        async function add(productId, quantity) {
             var usernameEl = document.getElementById("userName");
             if (usernameEl == null) {
                 window.location.href = "/Identity/Account/Login";
             }
-            try {
 
-                var response = await fetch(`/Cart/AddItem?productId=${productId}`);
-                if (response.ok) {
-                    var result = await response.json();
-                    var cartCountEl = document.getElementById("cartCount");
-                    if (cartCountEl) {
-                        cartCountEl.innerHTML = result;
-                        window.location.href = "#cartCount";
-                    }
-                    else {
-                        console.error("Element with id 'cartCount' not found.");
-                    }
+            try {
+                // Add the item to the cart
+                var response = await fetch(`/Cart/AddItem?productId=${productId}&quantity=${quantity}`);
+                if (!response.ok) {
+                    console.error("Failed to add item to cart.");
+                    return;
                 }
+
+                var result = await response.json();
+
+                if (!result.success) {
+                    // Show error message if stock quantity is insufficient
+                    if (result.insufficientStock) {
+                        var errorMessageElement = document.getElementById("errorMessage");
+                        if (errorMessageElement) {
+                            errorMessageElement.textContent = "Insufficient stock.";
+                            errorMessageElement.style.display = "block";
+                            setTimeout(function () {
+                                errorMessageElement.style.display = "none";
+                            }, 5000); // 5 seconds
+                        } else {
+                            console.error("Error message element not found.");
+                        }
+                    }
+                    return;
+                }
+
+                // Update the cart count display
+                var cartCountEl = document.getElementById("cartCount");
+                if (cartCountEl) {
+                    cartCountEl.textContent = result.cartCount;
+                }
+
             } catch (err) {
                 console.log(err);
             }

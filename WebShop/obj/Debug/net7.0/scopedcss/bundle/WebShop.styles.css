@@ -1,3 +1,22 @@
+/* _content/WebShop/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml.rz.scp.css */
+.black-text[b-njcwql43pp] {
+    color: black;
+}
+
+.white-text[b-njcwql43pp] {
+    color: white;
+}
+
+.black-text .nav-item .nav-link[b-njcwql43pp] {
+    color: black !important;
+}
+/* _content/WebShop/Views/Product/Index.cshtml.rz.scp.css */
+body[b-c1x9da39vw] {
+}
+
+.rounded-custom[b-c1x9da39vw] {
+    border-radius: 20px; /* Adjust the value to change the amount of rounding */
+}
 /* _content/WebShop/Views/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

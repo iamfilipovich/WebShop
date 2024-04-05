@@ -11,10 +11,18 @@ namespace WebShop.Controllers
         {
             _userOrderRepo = userOrderRepo;
         }
+
+        public async Task<IActionResult> GetAllUserOrders()
+        {
+            var allOrders = await _userOrderRepo.GetAllOrdersWithUser();
+            return View(allOrders);
+        }
         public async Task<IActionResult> UserOrders()
         {
             var orders = await _userOrderRepo.UserOrders();
             return View(orders);
         }
+
+        
     }
 }

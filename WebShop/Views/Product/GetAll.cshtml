@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebShop.Models.Products>
+@{
+}
+
+<div class="container pt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-dark" href="/Product/Add">Add more</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Products</h3>
+            
+                <table  class="table table-stripped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model)
+                        {
+                            <tr>
+                                <td>@product.Name</td>
+                                <td>@product.CategoryName</td>
+                                <td>@product.Price</td>
+                                <td>@product.Image</td>
+
+                                <td>
+                                    <a class="btn btn-success" href="/Product/Update?id=@product.ProductID">Edit</a> |
+                                    <a class="btn btn-danger" onclick="return window.confirm('Are you sure?')" href="/Product/Delete?id=@product.ProductID">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
