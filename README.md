@@ -17,4 +17,4 @@ SQL Server Management Studio (SSMS): Utilized for database management.
 
 LINQ: Used for executing queries against the database.
 
-Stripe: Integrated for online payment integration.
+Stripe: Integrated for online payment.
