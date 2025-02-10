@@ -18,3 +18,6 @@ SQL Server Management Studio (SSMS): Utilized for database management.
 LINQ: Used for executing queries against the database.
 
 Stripe: Integrated for online payment.
+
+https://github.com/user-attachments/assets/549cf32d-8ba7-46d2-ae39-0cdf9e2f3af5
+
