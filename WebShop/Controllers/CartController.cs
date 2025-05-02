@@ -24,7 +24,7 @@ namespace WebShop.Controllers
         public async Task<IActionResult> Charge()
         {
             // Replace with your actual Stripe API key
-            StripeConfiguration.ApiKey = "sk_test_51OttqFEXxriyRJQtbOacC2yliaODneUBvM2iRo2fNFK0Ubl3fmj1PUl1SwWbDUrYyJSOnYb4uWUU3vt4tDJm1FFe00gN0KIsOE";
+            StripeConfiguration.ApiKey = "";
 
             // Retrieve product information from the ProductService
             var shoppingCart = await _cartRepo.GetUserCart();
